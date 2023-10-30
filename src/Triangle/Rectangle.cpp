@@ -53,28 +53,38 @@ int main()
     
     //顶点坐标
     float vertices[] = {
-            -0.5f , -0.5f , 0.0f,
-            0.5f , -0.5f , 0.0f,
-            0.0f , 0.5f , 0.0f
+            0.5f , 0.5f , 0.0f, //右上
+            0.5f , -0.5f , 0.0f,  //右下
+            -0.5 , -0.5f , 0.0f,  //左下
+            -0.5f , 0.5f , 0.0f  //左上
     };
-
-
+    
+    //使用EBO(Element Buffer Object)对绘制三角形设置顺序
+    unsigned int indices[]={
+        0 , 1 , 3,
+        1 , 2 , 3
+    };
+    
     //生成OpenGL对象
     unsigned int VBO;
     unsigned int VAO;
+    unsigned int EBO;
     
     glGenBuffers(1 , &VBO);
     glGenVertexArrays(1 , &VAO);
+    glGenBuffers(1 , &EBO);
     
     glBindVertexArray(VAO);
     
     //顶点缓冲对象的缓冲类型是GL_ARRAY_BUFFER
     //将创建的缓冲绑定到GL_ARRAY_BUFFER
     glBindBuffer(GL_ARRAY_BUFFER , VBO);
-    
+    //元素缓冲对象
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER , EBO);
     
     //将顶点复制到缓冲内存
     glBufferData(GL_ARRAY_BUFFER , sizeof(vertices) , vertices , GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER , sizeof(indices) , indices , GL_STATIC_DRAW);
     
     //创建顶点着色器
     unsigned int vertexShader;
@@ -113,6 +123,7 @@ int main()
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
     
+    //告诉GLSL如何解析顶点数据
     //1.将layout(location=0)的位置属性通知每个顶点
     //2.顶点属性的大小 顶点是vec3 所以值是3  3.数据传入类型
     //4.数据是否被标准化 映射到0-1之间 5.步长 指连续顶点属性组之间的距离 这里是3个float
@@ -132,13 +143,20 @@ int main()
         
         glUseProgram(shaderProgram);
         glBindVertexArray(VAO);
-        glDrawArrays(GL_TRIANGLES , 0 , 3);
-        
-        
+        //glDrawArrays(GL_TRIANGLES , 0 , 3);
+        //1.绘制模式 2.绘制的点数量 3.索引类型 4.偏移值
+        glDrawElements(GL_TRIANGLES , 6 , GL_UNSIGNED_INT , 0);
+        //线框模式绘制
+        //1.康到三角形的正面和背面 2.用线绘制
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         //渲染 交换缓冲
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
+    
+    glDeleteVertexArrays(1 , &VAO);
+    glDeleteBuffers(1 , &VBO);
+    glDeleteProgram(shaderProgram);
     
     glfwTerminate();
     
