@@ -11,9 +11,19 @@ add_executable(Rectangle src/glad.c src/Triangle/Rectangle.cpp)
 
 add_executable(TwoTriangle src/glad.c src/Triangle/TwoTriangle.cpp)
 
-add_executable(Shader src/glad.c src/Shader/Shader.cpp)
+add_executable(GLSL src/glad.c src/Shader/GLSL.cpp)
 
 add_executable(Uniform src/glad.c src/Shader/Uniform.cpp)
+
+add_executable(ColorfulTriangle src/glad.c src/Shader/ColorfulTriangle.cpp)
+
+add_executable(Shader src/glad.c src/Shader/Shader.cpp)
+
+add_executable(useGLSL src/glad.c src/Shader/useGLSL.cpp
+         src/glad.c src/Shader/Shader.cpp
+         src/glad.c src/Shader/Shader.h)
+
+
 #file (GLOB_RECURSE files *.cpp)
 #foreach (file ${files})
 #    string(REGEX REPLACE ".+/(.+)\\..*" "\\1" exe ${file})
@@ -28,5 +38,8 @@ target_link_libraries(LearnOpenGL ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
 target_link_libraries(CreateWindow ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
 target_link_libraries(Rectangle ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
 target_link_libraries(TwoTriangle ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
-target_link_libraries(Shader ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
+target_link_libraries(GLSL ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
 target_link_libraries(Uniform ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
+target_link_libraries(ColorfulTriangle ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
+target_link_libraries(Shader ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
+target_link_libraries(useGLSL ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
