@@ -3,7 +3,7 @@
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
-#include "Shader.h"
+#include "Tool/Shader.h"
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 //读取输入
