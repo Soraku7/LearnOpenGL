@@ -118,6 +118,7 @@ int main()
     }
     stbi_image_free(data);
     
+    ourShader.use();
     
     //重复渲染
     while (!glfwWindowShouldClose(window))
@@ -128,7 +129,7 @@ int main()
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
         
-        ourShader.use();
+        
         glBindVertexArray(VAO);
         //glDrawArrays(GL_TRIANGLES , 0 , 3);
         //1.绘制模式 2.绘制的点数量 3.索引类型 4.偏移值
