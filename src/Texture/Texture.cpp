@@ -89,9 +89,9 @@ int main()
     glVertexAttribPointer(2 , 2 , GL_FLOAT , GL_FALSE , 8 * sizeof(float) , (void*)(6 * sizeof(float)));
     glEnableVertexAttribArray(2);
     
-    unsigned int texture;
-    glGenTextures(1 , &texture);
-    glBindTexture(GL_TEXTURE_2D , texture);
+    unsigned int texture1 , texture2;
+    glGenTextures(1 , &texture1);
+    glBindTexture(GL_TEXTURE_2D , texture1);
     
     //绑定坐标轴
     glTexParameteri(GL_TEXTURE_2D , GL_TEXTURE_WRAP_S , GL_REPEAT);
@@ -102,6 +102,8 @@ int main()
     
     //长 宽 颜色 三个通道
     int width , height , nrChannel;
+    //反转y轴
+    stbi_set_flip_vertically_on_load(true);
     unsigned char *data = stbi_load("D:\\LearnOpenGL\\src\\Texture\\Assets\\container.jpg" ,
                             &width , &height , &nrChannel , 0);
     
@@ -114,11 +116,41 @@ int main()
     }
     else
     {
-        std::cout << "Failed to load texture" << std::endl;
+        std::cout << "Failed to load texture1" << std::endl;
     }
     stbi_image_free(data);
     
+    glGenTextures(1 , &texture2);
+    glBindTexture(GL_TEXTURE_2D , texture2);
+    //绑定坐标轴
+    glTexParameteri(GL_TEXTURE_2D , GL_TEXTURE_WRAP_S , GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D , GL_TEXTURE_WRAP_T , GL_REPEAT);
+    //设置高低通滤波的过滤方式
+    glTexParameteri(GL_TEXTURE_2D , GL_TEXTURE_MIN_FILTER , GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER , GL_LINEAR);
+    
+    //长 宽 颜色 三个通道
+    data = stbi_load("D:\\LearnOpenGL\\src\\Texture\\Assets\\awesomeface.png" ,
+                                    &width , &height , &nrChannel , 0);
+    
+    if (data)
+    {
+        //1.纹理目标 2.Mipmap 级别 0为标准级别 3.期望图像的存储格式RGBA 4、5 为宽高
+        //7.图源格式 8.数据类型 9.图像数据
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+        glGenerateMipmap(GL_TEXTURE_2D);
+    }
+    else
+    {
+        std::cout << "Failed to load texture" << std::endl;
+    }
+    
+    stbi_image_free(data);
+    
+    
     ourShader.use();
+    ourShader.setInt("texture1" , 0);
+    ourShader.setInt("texture2" , 1);
     
     //重复渲染
     while (!glfwWindowShouldClose(window))
@@ -128,6 +160,12 @@ int main()
         
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
+        
+        //机会绑定渲染贴图
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D , texture1);
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D , texture2);
         
         
         glBindVertexArray(VAO);
