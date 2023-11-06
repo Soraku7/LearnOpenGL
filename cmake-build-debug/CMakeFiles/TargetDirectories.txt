@@ -1,3 +1,13 @@
 D:/LearnOpenGL/cmake-build-debug/CMakeFiles/LearnOpenGL.dir
+D:/LearnOpenGL/cmake-build-debug/CMakeFiles/CreateWindow.dir
+D:/LearnOpenGL/cmake-build-debug/CMakeFiles/Rectangle.dir
+D:/LearnOpenGL/cmake-build-debug/CMakeFiles/TwoTriangle.dir
+D:/LearnOpenGL/cmake-build-debug/CMakeFiles/GLSL.dir
+D:/LearnOpenGL/cmake-build-debug/CMakeFiles/Uniform.dir
+D:/LearnOpenGL/cmake-build-debug/CMakeFiles/ColorfulTriangle.dir
+D:/LearnOpenGL/cmake-build-debug/CMakeFiles/Shader.dir
+D:/LearnOpenGL/cmake-build-debug/CMakeFiles/useGLSL.dir
+D:/LearnOpenGL/cmake-build-debug/CMakeFiles/Texture.dir
+D:/LearnOpenGL/cmake-build-debug/CMakeFiles/TransformTest.dir
 D:/LearnOpenGL/cmake-build-debug/CMakeFiles/edit_cache.dir
 D:/LearnOpenGL/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -4,6 +4,9 @@
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 #include "Tool/Shader.h"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include <iostream>
 
 //随着窗体大小更变
@@ -167,10 +170,27 @@ int main()
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D , texture2);
         
+        //第一个图片
+        glm::mat4 trans = glm::mat4(1.0f);
+        //trans = glm::rotate(trans, (float)glfwGetTime(), glm::vec3(0.0, 0.0, 1.0));
+        trans = glm::scale(trans, glm::vec3(0.5, 0.5, 0.5));
+        trans = glm::translate(trans , glm::vec3(0.5f , -0.5f , 0.0f));
+        
+        unsigned int transformLoc = glGetUniformLocation(ourShader.ID , "transform");
+        //1.Uniform的地址 2.发送的矩阵数量 3.是否进行矩阵转置 4.矩阵
+        glUniformMatrix4fv(transformLoc , 1 , GL_FALSE , glm::value_ptr(trans));
         
         glBindVertexArray(VAO);
         //glDrawArrays(GL_TRIANGLES , 0 , 3);
         //1.绘制模式 2.绘制的点数量 3.索引类型 4.偏移值
+        glDrawElements(GL_TRIANGLES , 6 , GL_UNSIGNED_INT , 0);
+        
+        trans = glm::mat4(1.0f);
+        trans = glm::translate(trans , glm::vec3(-0.5f , 0.5f , 0.f));
+        float scaleAmount = static_cast<float>(sin(glfwGetTime()));
+        trans = glm::scale(trans , glm::vec3(scaleAmount , scaleAmount , scaleAmount));
+        glUniformMatrix4fv(transformLoc , 1 , GL_FALSE , &trans[0][0]);
+        
         glDrawElements(GL_TRIANGLES , 6 , GL_UNSIGNED_INT , 0);
         //线框模式绘制
         //1.康到三角形的正面和背面 2.用线绘制

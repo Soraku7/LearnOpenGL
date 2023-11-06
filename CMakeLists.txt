@@ -27,6 +27,8 @@ add_executable(Texture src/glad.c src/Texture/Texture.cpp
         include/Tool/stb_image.h
         include/Tool/Shader.h
         src/Shader/Shader.cpp)
+
+add_executable(TransformTest src/glad.c src/Transform/TransformTest.cpp)
 #file (GLOB_RECURSE files *.cpp)
 #foreach (file ${files})
 #    string(REGEX REPLACE ".+/(.+)\\..*" "\\1" exe ${file})

@@ -56,12 +56,12 @@ build CMakeFiles/LearnOpenGL.dir/src/glad.c.obj: C_COMPILER__LearnOpenGL_unscann
   OBJECT_DIR = CMakeFiles\LearnOpenGL.dir
   OBJECT_FILE_DIR = CMakeFiles\LearnOpenGL.dir\src
 
-build CMakeFiles/LearnOpenGL.dir/main.cpp.obj: CXX_COMPILER__LearnOpenGL_unscanned_Debug D$:/LearnOpenGL/main.cpp || cmake_object_order_depends_target_LearnOpenGL
-  DEP_FILE = CMakeFiles\LearnOpenGL.dir\main.cpp.obj.d
+build CMakeFiles/LearnOpenGL.dir/src/Triangle/Triangle.cpp.obj: CXX_COMPILER__LearnOpenGL_unscanned_Debug D$:/LearnOpenGL/src/Triangle/Triangle.cpp || cmake_object_order_depends_target_LearnOpenGL
+  DEP_FILE = CMakeFiles\LearnOpenGL.dir\src\Triangle\Triangle.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
   INCLUDES = -ID:/LearnOpenGL/include
   OBJECT_DIR = CMakeFiles\LearnOpenGL.dir
-  OBJECT_FILE_DIR = CMakeFiles\LearnOpenGL.dir
+  OBJECT_FILE_DIR = CMakeFiles\LearnOpenGL.dir\src\Triangle
 
 
 # =============================================================================
@@ -71,7 +71,7 @@ build CMakeFiles/LearnOpenGL.dir/main.cpp.obj: CXX_COMPILER__LearnOpenGL_unscann
 #############################################
 # Link the executable LearnOpenGL.exe
 
-build LearnOpenGL.exe: CXX_EXECUTABLE_LINKER__LearnOpenGL_Debug CMakeFiles/LearnOpenGL.dir/src/glad.c.obj CMakeFiles/LearnOpenGL.dir/main.cpp.obj | D$:/LearnOpenGL/lib/glfw3.dll
+build LearnOpenGL.exe: CXX_EXECUTABLE_LINKER__LearnOpenGL_Debug CMakeFiles/LearnOpenGL.dir/src/glad.c.obj CMakeFiles/LearnOpenGL.dir/src/Triangle/Triangle.cpp.obj | D$:/LearnOpenGL/lib/glfw3.dll
   FLAGS = -g
   LINK_LIBRARIES = D:/LearnOpenGL/lib/glfw3.dll  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\LearnOpenGL.dir
@@ -80,6 +80,430 @@ build LearnOpenGL.exe: CXX_EXECUTABLE_LINKER__LearnOpenGL_Debug CMakeFiles/Learn
   TARGET_FILE = LearnOpenGL.exe
   TARGET_IMPLIB = libLearnOpenGL.dll.a
   TARGET_PDB = LearnOpenGL.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target CreateWindow
+
+
+#############################################
+# Order-only phony target for CreateWindow
+
+build cmake_object_order_depends_target_CreateWindow: phony || CMakeFiles/CreateWindow.dir
+
+build CMakeFiles/CreateWindow.dir/src/glad.c.obj: C_COMPILER__CreateWindow_unscanned_Debug D$:/LearnOpenGL/src/glad.c || cmake_object_order_depends_target_CreateWindow
+  DEP_FILE = CMakeFiles\CreateWindow.dir\src\glad.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -ID:/LearnOpenGL/include
+  OBJECT_DIR = CMakeFiles\CreateWindow.dir
+  OBJECT_FILE_DIR = CMakeFiles\CreateWindow.dir\src
+
+build CMakeFiles/CreateWindow.dir/src/CreateWindow/CreateWindow.cpp.obj: CXX_COMPILER__CreateWindow_unscanned_Debug D$:/LearnOpenGL/src/CreateWindow/CreateWindow.cpp || cmake_object_order_depends_target_CreateWindow
+  DEP_FILE = CMakeFiles\CreateWindow.dir\src\CreateWindow\CreateWindow.cpp.obj.d
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -ID:/LearnOpenGL/include
+  OBJECT_DIR = CMakeFiles\CreateWindow.dir
+  OBJECT_FILE_DIR = CMakeFiles\CreateWindow.dir\src\CreateWindow
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target CreateWindow
+
+
+#############################################
+# Link the executable CreateWindow.exe
+
+build CreateWindow.exe: CXX_EXECUTABLE_LINKER__CreateWindow_Debug CMakeFiles/CreateWindow.dir/src/glad.c.obj CMakeFiles/CreateWindow.dir/src/CreateWindow/CreateWindow.cpp.obj | D$:/LearnOpenGL/lib/glfw3.dll
+  FLAGS = -g
+  LINK_LIBRARIES = D:/LearnOpenGL/lib/glfw3.dll  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\CreateWindow.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = CreateWindow.exe
+  TARGET_IMPLIB = libCreateWindow.dll.a
+  TARGET_PDB = CreateWindow.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target Rectangle
+
+
+#############################################
+# Order-only phony target for Rectangle
+
+build cmake_object_order_depends_target_Rectangle: phony || CMakeFiles/Rectangle.dir
+
+build CMakeFiles/Rectangle.dir/src/glad.c.obj: C_COMPILER__Rectangle_unscanned_Debug D$:/LearnOpenGL/src/glad.c || cmake_object_order_depends_target_Rectangle
+  DEP_FILE = CMakeFiles\Rectangle.dir\src\glad.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -ID:/LearnOpenGL/include
+  OBJECT_DIR = CMakeFiles\Rectangle.dir
+  OBJECT_FILE_DIR = CMakeFiles\Rectangle.dir\src
+
+build CMakeFiles/Rectangle.dir/src/Triangle/Rectangle.cpp.obj: CXX_COMPILER__Rectangle_unscanned_Debug D$:/LearnOpenGL/src/Triangle/Rectangle.cpp || cmake_object_order_depends_target_Rectangle
+  DEP_FILE = CMakeFiles\Rectangle.dir\src\Triangle\Rectangle.cpp.obj.d
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -ID:/LearnOpenGL/include
+  OBJECT_DIR = CMakeFiles\Rectangle.dir
+  OBJECT_FILE_DIR = CMakeFiles\Rectangle.dir\src\Triangle
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target Rectangle
+
+
+#############################################
+# Link the executable Rectangle.exe
+
+build Rectangle.exe: CXX_EXECUTABLE_LINKER__Rectangle_Debug CMakeFiles/Rectangle.dir/src/glad.c.obj CMakeFiles/Rectangle.dir/src/Triangle/Rectangle.cpp.obj | D$:/LearnOpenGL/lib/glfw3.dll
+  FLAGS = -g
+  LINK_LIBRARIES = D:/LearnOpenGL/lib/glfw3.dll  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\Rectangle.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = Rectangle.exe
+  TARGET_IMPLIB = libRectangle.dll.a
+  TARGET_PDB = Rectangle.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target TwoTriangle
+
+
+#############################################
+# Order-only phony target for TwoTriangle
+
+build cmake_object_order_depends_target_TwoTriangle: phony || CMakeFiles/TwoTriangle.dir
+
+build CMakeFiles/TwoTriangle.dir/src/glad.c.obj: C_COMPILER__TwoTriangle_unscanned_Debug D$:/LearnOpenGL/src/glad.c || cmake_object_order_depends_target_TwoTriangle
+  DEP_FILE = CMakeFiles\TwoTriangle.dir\src\glad.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -ID:/LearnOpenGL/include
+  OBJECT_DIR = CMakeFiles\TwoTriangle.dir
+  OBJECT_FILE_DIR = CMakeFiles\TwoTriangle.dir\src
+
+build CMakeFiles/TwoTriangle.dir/src/Triangle/TwoTriangle.cpp.obj: CXX_COMPILER__TwoTriangle_unscanned_Debug D$:/LearnOpenGL/src/Triangle/TwoTriangle.cpp || cmake_object_order_depends_target_TwoTriangle
+  DEP_FILE = CMakeFiles\TwoTriangle.dir\src\Triangle\TwoTriangle.cpp.obj.d
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -ID:/LearnOpenGL/include
+  OBJECT_DIR = CMakeFiles\TwoTriangle.dir
+  OBJECT_FILE_DIR = CMakeFiles\TwoTriangle.dir\src\Triangle
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target TwoTriangle
+
+
+#############################################
+# Link the executable TwoTriangle.exe
+
+build TwoTriangle.exe: CXX_EXECUTABLE_LINKER__TwoTriangle_Debug CMakeFiles/TwoTriangle.dir/src/glad.c.obj CMakeFiles/TwoTriangle.dir/src/Triangle/TwoTriangle.cpp.obj | D$:/LearnOpenGL/lib/glfw3.dll
+  FLAGS = -g
+  LINK_LIBRARIES = D:/LearnOpenGL/lib/glfw3.dll  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\TwoTriangle.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = TwoTriangle.exe
+  TARGET_IMPLIB = libTwoTriangle.dll.a
+  TARGET_PDB = TwoTriangle.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target GLSL
+
+
+#############################################
+# Order-only phony target for GLSL
+
+build cmake_object_order_depends_target_GLSL: phony || CMakeFiles/GLSL.dir
+
+build CMakeFiles/GLSL.dir/src/glad.c.obj: C_COMPILER__GLSL_unscanned_Debug D$:/LearnOpenGL/src/glad.c || cmake_object_order_depends_target_GLSL
+  DEP_FILE = CMakeFiles\GLSL.dir\src\glad.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -ID:/LearnOpenGL/include
+  OBJECT_DIR = CMakeFiles\GLSL.dir
+  OBJECT_FILE_DIR = CMakeFiles\GLSL.dir\src
+
+build CMakeFiles/GLSL.dir/src/Shader/GLSL.cpp.obj: CXX_COMPILER__GLSL_unscanned_Debug D$:/LearnOpenGL/src/Shader/GLSL.cpp || cmake_object_order_depends_target_GLSL
+  DEP_FILE = CMakeFiles\GLSL.dir\src\Shader\GLSL.cpp.obj.d
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -ID:/LearnOpenGL/include
+  OBJECT_DIR = CMakeFiles\GLSL.dir
+  OBJECT_FILE_DIR = CMakeFiles\GLSL.dir\src\Shader
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target GLSL
+
+
+#############################################
+# Link the executable GLSL.exe
+
+build GLSL.exe: CXX_EXECUTABLE_LINKER__GLSL_Debug CMakeFiles/GLSL.dir/src/glad.c.obj CMakeFiles/GLSL.dir/src/Shader/GLSL.cpp.obj | D$:/LearnOpenGL/lib/glfw3.dll
+  FLAGS = -g
+  LINK_LIBRARIES = D:/LearnOpenGL/lib/glfw3.dll  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\GLSL.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = GLSL.exe
+  TARGET_IMPLIB = libGLSL.dll.a
+  TARGET_PDB = GLSL.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target Uniform
+
+
+#############################################
+# Order-only phony target for Uniform
+
+build cmake_object_order_depends_target_Uniform: phony || CMakeFiles/Uniform.dir
+
+build CMakeFiles/Uniform.dir/src/glad.c.obj: C_COMPILER__Uniform_unscanned_Debug D$:/LearnOpenGL/src/glad.c || cmake_object_order_depends_target_Uniform
+  DEP_FILE = CMakeFiles\Uniform.dir\src\glad.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -ID:/LearnOpenGL/include
+  OBJECT_DIR = CMakeFiles\Uniform.dir
+  OBJECT_FILE_DIR = CMakeFiles\Uniform.dir\src
+
+build CMakeFiles/Uniform.dir/src/Shader/Uniform.cpp.obj: CXX_COMPILER__Uniform_unscanned_Debug D$:/LearnOpenGL/src/Shader/Uniform.cpp || cmake_object_order_depends_target_Uniform
+  DEP_FILE = CMakeFiles\Uniform.dir\src\Shader\Uniform.cpp.obj.d
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -ID:/LearnOpenGL/include
+  OBJECT_DIR = CMakeFiles\Uniform.dir
+  OBJECT_FILE_DIR = CMakeFiles\Uniform.dir\src\Shader
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target Uniform
+
+
+#############################################
+# Link the executable Uniform.exe
+
+build Uniform.exe: CXX_EXECUTABLE_LINKER__Uniform_Debug CMakeFiles/Uniform.dir/src/glad.c.obj CMakeFiles/Uniform.dir/src/Shader/Uniform.cpp.obj | D$:/LearnOpenGL/lib/glfw3.dll
+  FLAGS = -g
+  LINK_LIBRARIES = D:/LearnOpenGL/lib/glfw3.dll  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\Uniform.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = Uniform.exe
+  TARGET_IMPLIB = libUniform.dll.a
+  TARGET_PDB = Uniform.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target ColorfulTriangle
+
+
+#############################################
+# Order-only phony target for ColorfulTriangle
+
+build cmake_object_order_depends_target_ColorfulTriangle: phony || CMakeFiles/ColorfulTriangle.dir
+
+build CMakeFiles/ColorfulTriangle.dir/src/glad.c.obj: C_COMPILER__ColorfulTriangle_unscanned_Debug D$:/LearnOpenGL/src/glad.c || cmake_object_order_depends_target_ColorfulTriangle
+  DEP_FILE = CMakeFiles\ColorfulTriangle.dir\src\glad.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -ID:/LearnOpenGL/include
+  OBJECT_DIR = CMakeFiles\ColorfulTriangle.dir
+  OBJECT_FILE_DIR = CMakeFiles\ColorfulTriangle.dir\src
+
+build CMakeFiles/ColorfulTriangle.dir/src/Shader/ColorfulTriangle.cpp.obj: CXX_COMPILER__ColorfulTriangle_unscanned_Debug D$:/LearnOpenGL/src/Shader/ColorfulTriangle.cpp || cmake_object_order_depends_target_ColorfulTriangle
+  DEP_FILE = CMakeFiles\ColorfulTriangle.dir\src\Shader\ColorfulTriangle.cpp.obj.d
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -ID:/LearnOpenGL/include
+  OBJECT_DIR = CMakeFiles\ColorfulTriangle.dir
+  OBJECT_FILE_DIR = CMakeFiles\ColorfulTriangle.dir\src\Shader
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target ColorfulTriangle
+
+
+#############################################
+# Link the executable ColorfulTriangle.exe
+
+build ColorfulTriangle.exe: CXX_EXECUTABLE_LINKER__ColorfulTriangle_Debug CMakeFiles/ColorfulTriangle.dir/src/glad.c.obj CMakeFiles/ColorfulTriangle.dir/src/Shader/ColorfulTriangle.cpp.obj | D$:/LearnOpenGL/lib/glfw3.dll
+  FLAGS = -g
+  LINK_LIBRARIES = D:/LearnOpenGL/lib/glfw3.dll  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\ColorfulTriangle.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = ColorfulTriangle.exe
+  TARGET_IMPLIB = libColorfulTriangle.dll.a
+  TARGET_PDB = ColorfulTriangle.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target Shader
+
+
+#############################################
+# Order-only phony target for Shader
+
+build cmake_object_order_depends_target_Shader: phony || CMakeFiles/Shader.dir
+
+build CMakeFiles/Shader.dir/src/glad.c.obj: C_COMPILER__Shader_unscanned_Debug D$:/LearnOpenGL/src/glad.c || cmake_object_order_depends_target_Shader
+  DEP_FILE = CMakeFiles\Shader.dir\src\glad.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -ID:/LearnOpenGL/include
+  OBJECT_DIR = CMakeFiles\Shader.dir
+  OBJECT_FILE_DIR = CMakeFiles\Shader.dir\src
+
+build CMakeFiles/Shader.dir/src/Shader/Shader.cpp.obj: CXX_COMPILER__Shader_unscanned_Debug D$:/LearnOpenGL/src/Shader/Shader.cpp || cmake_object_order_depends_target_Shader
+  DEP_FILE = CMakeFiles\Shader.dir\src\Shader\Shader.cpp.obj.d
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -ID:/LearnOpenGL/include
+  OBJECT_DIR = CMakeFiles\Shader.dir
+  OBJECT_FILE_DIR = CMakeFiles\Shader.dir\src\Shader
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target Shader
+
+
+#############################################
+# Link the executable Shader.exe
+
+build Shader.exe: CXX_EXECUTABLE_LINKER__Shader_Debug CMakeFiles/Shader.dir/src/glad.c.obj CMakeFiles/Shader.dir/src/Shader/Shader.cpp.obj | D$:/LearnOpenGL/lib/glfw3.dll
+  FLAGS = -g
+  LINK_LIBRARIES = D:/LearnOpenGL/lib/glfw3.dll  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\Shader.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = Shader.exe
+  TARGET_IMPLIB = libShader.dll.a
+  TARGET_PDB = Shader.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target useGLSL
+
+
+#############################################
+# Order-only phony target for useGLSL
+
+build cmake_object_order_depends_target_useGLSL: phony || CMakeFiles/useGLSL.dir
+
+build CMakeFiles/useGLSL.dir/src/glad.c.obj: C_COMPILER__useGLSL_unscanned_Debug D$:/LearnOpenGL/src/glad.c || cmake_object_order_depends_target_useGLSL
+  DEP_FILE = CMakeFiles\useGLSL.dir\src\glad.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -ID:/LearnOpenGL/include
+  OBJECT_DIR = CMakeFiles\useGLSL.dir
+  OBJECT_FILE_DIR = CMakeFiles\useGLSL.dir\src
+
+build CMakeFiles/useGLSL.dir/src/Shader/useGLSL.cpp.obj: CXX_COMPILER__useGLSL_unscanned_Debug D$:/LearnOpenGL/src/Shader/useGLSL.cpp || cmake_object_order_depends_target_useGLSL
+  DEP_FILE = CMakeFiles\useGLSL.dir\src\Shader\useGLSL.cpp.obj.d
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -ID:/LearnOpenGL/include
+  OBJECT_DIR = CMakeFiles\useGLSL.dir
+  OBJECT_FILE_DIR = CMakeFiles\useGLSL.dir\src\Shader
+
+build CMakeFiles/useGLSL.dir/src/Shader/Shader.cpp.obj: CXX_COMPILER__useGLSL_unscanned_Debug D$:/LearnOpenGL/src/Shader/Shader.cpp || cmake_object_order_depends_target_useGLSL
+  DEP_FILE = CMakeFiles\useGLSL.dir\src\Shader\Shader.cpp.obj.d
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -ID:/LearnOpenGL/include
+  OBJECT_DIR = CMakeFiles\useGLSL.dir
+  OBJECT_FILE_DIR = CMakeFiles\useGLSL.dir\src\Shader
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target useGLSL
+
+
+#############################################
+# Link the executable useGLSL.exe
+
+build useGLSL.exe: CXX_EXECUTABLE_LINKER__useGLSL_Debug CMakeFiles/useGLSL.dir/src/glad.c.obj CMakeFiles/useGLSL.dir/src/Shader/useGLSL.cpp.obj CMakeFiles/useGLSL.dir/src/Shader/Shader.cpp.obj | D$:/LearnOpenGL/lib/glfw3.dll
+  FLAGS = -g
+  LINK_LIBRARIES = D:/LearnOpenGL/lib/glfw3.dll  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\useGLSL.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = useGLSL.exe
+  TARGET_IMPLIB = libuseGLSL.dll.a
+  TARGET_PDB = useGLSL.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target Texture
+
+
+#############################################
+# Order-only phony target for Texture
+
+build cmake_object_order_depends_target_Texture: phony || CMakeFiles/Texture.dir
+
+build CMakeFiles/Texture.dir/src/glad.c.obj: C_COMPILER__Texture_unscanned_Debug D$:/LearnOpenGL/src/glad.c || cmake_object_order_depends_target_Texture
+  DEP_FILE = CMakeFiles\Texture.dir\src\glad.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -ID:/LearnOpenGL/include
+  OBJECT_DIR = CMakeFiles\Texture.dir
+  OBJECT_FILE_DIR = CMakeFiles\Texture.dir\src
+
+build CMakeFiles/Texture.dir/src/Texture/Texture.cpp.obj: CXX_COMPILER__Texture_unscanned_Debug D$:/LearnOpenGL/src/Texture/Texture.cpp || cmake_object_order_depends_target_Texture
+  DEP_FILE = CMakeFiles\Texture.dir\src\Texture\Texture.cpp.obj.d
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -ID:/LearnOpenGL/include
+  OBJECT_DIR = CMakeFiles\Texture.dir
+  OBJECT_FILE_DIR = CMakeFiles\Texture.dir\src\Texture
+
+build CMakeFiles/Texture.dir/src/Shader/Shader.cpp.obj: CXX_COMPILER__Texture_unscanned_Debug D$:/LearnOpenGL/src/Shader/Shader.cpp || cmake_object_order_depends_target_Texture
+  DEP_FILE = CMakeFiles\Texture.dir\src\Shader\Shader.cpp.obj.d
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -ID:/LearnOpenGL/include
+  OBJECT_DIR = CMakeFiles\Texture.dir
+  OBJECT_FILE_DIR = CMakeFiles\Texture.dir\src\Shader
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target Texture
+
+
+#############################################
+# Link the executable Texture.exe
+
+build Texture.exe: CXX_EXECUTABLE_LINKER__Texture_Debug CMakeFiles/Texture.dir/src/glad.c.obj CMakeFiles/Texture.dir/src/Texture/Texture.cpp.obj CMakeFiles/Texture.dir/src/Shader/Shader.cpp.obj | D$:/LearnOpenGL/lib/glfw3.dll
+  FLAGS = -g
+  LINK_LIBRARIES = D:/LearnOpenGL/lib/glfw3.dll  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\Texture.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = Texture.exe
+  TARGET_IMPLIB = libTexture.dll.a
+  TARGET_PDB = Texture.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target TransformTest
+
+
+#############################################
+# Order-only phony target for TransformTest
+
+build cmake_object_order_depends_target_TransformTest: phony || CMakeFiles/TransformTest.dir
+
+build CMakeFiles/TransformTest.dir/src/glad.c.obj: C_COMPILER__TransformTest_unscanned_Debug D$:/LearnOpenGL/src/glad.c || cmake_object_order_depends_target_TransformTest
+  DEP_FILE = CMakeFiles\TransformTest.dir\src\glad.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -ID:/LearnOpenGL/include
+  OBJECT_DIR = CMakeFiles\TransformTest.dir
+  OBJECT_FILE_DIR = CMakeFiles\TransformTest.dir\src
+
+build CMakeFiles/TransformTest.dir/src/Transform/TransformTest.cpp.obj: CXX_COMPILER__TransformTest_unscanned_Debug D$:/LearnOpenGL/src/Transform/TransformTest.cpp || cmake_object_order_depends_target_TransformTest
+  DEP_FILE = CMakeFiles\TransformTest.dir\src\Transform\TransformTest.cpp.obj.d
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -ID:/LearnOpenGL/include
+  OBJECT_DIR = CMakeFiles\TransformTest.dir
+  OBJECT_FILE_DIR = CMakeFiles\TransformTest.dir\src\Transform
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target TransformTest
+
+
+#############################################
+# Link the executable TransformTest.exe
+
+build TransformTest.exe: CXX_EXECUTABLE_LINKER__TransformTest_Debug CMakeFiles/TransformTest.dir/src/glad.c.obj CMakeFiles/TransformTest.dir/src/Transform/TransformTest.cpp.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\TransformTest.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = TransformTest.exe
+  TARGET_IMPLIB = libTransformTest.dll.a
+  TARGET_PDB = TransformTest.exe.dbg
 
 
 #############################################
@@ -107,7 +531,27 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
+build ColorfulTriangle: phony ColorfulTriangle.exe
+
+build CreateWindow: phony CreateWindow.exe
+
+build GLSL: phony GLSL.exe
+
 build LearnOpenGL: phony LearnOpenGL.exe
+
+build Rectangle: phony Rectangle.exe
+
+build Shader: phony Shader.exe
+
+build Texture: phony Texture.exe
+
+build TransformTest: phony TransformTest.exe
+
+build TwoTriangle: phony TwoTriangle.exe
+
+build Uniform: phony Uniform.exe
+
+build useGLSL: phony useGLSL.exe
 
 # =============================================================================
 # Folder targets.
@@ -117,7 +561,7 @@ build LearnOpenGL: phony LearnOpenGL.exe
 #############################################
 # Folder: D:/LearnOpenGL/cmake-build-debug
 
-build all: phony LearnOpenGL.exe
+build all: phony LearnOpenGL.exe CreateWindow.exe Rectangle.exe TwoTriangle.exe GLSL.exe Uniform.exe ColorfulTriangle.exe Shader.exe useGLSL.exe Texture.exe TransformTest.exe
 
 # =============================================================================
 # Built-in targets
