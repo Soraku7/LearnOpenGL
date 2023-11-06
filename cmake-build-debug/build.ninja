@@ -487,6 +487,13 @@ build CMakeFiles/TransformTest.dir/src/Transform/TransformTest.cpp.obj: CXX_COMP
   OBJECT_DIR = CMakeFiles\TransformTest.dir
   OBJECT_FILE_DIR = CMakeFiles\TransformTest.dir\src\Transform
 
+build CMakeFiles/TransformTest.dir/src/Shader/Shader.cpp.obj: CXX_COMPILER__TransformTest_unscanned_Debug D$:/LearnOpenGL/src/Shader/Shader.cpp || cmake_object_order_depends_target_TransformTest
+  DEP_FILE = CMakeFiles\TransformTest.dir\src\Shader\Shader.cpp.obj.d
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -ID:/LearnOpenGL/include
+  OBJECT_DIR = CMakeFiles\TransformTest.dir
+  OBJECT_FILE_DIR = CMakeFiles\TransformTest.dir\src\Shader
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target TransformTest
@@ -495,9 +502,9 @@ build CMakeFiles/TransformTest.dir/src/Transform/TransformTest.cpp.obj: CXX_COMP
 #############################################
 # Link the executable TransformTest.exe
 
-build TransformTest.exe: CXX_EXECUTABLE_LINKER__TransformTest_Debug CMakeFiles/TransformTest.dir/src/glad.c.obj CMakeFiles/TransformTest.dir/src/Transform/TransformTest.cpp.obj
+build TransformTest.exe: CXX_EXECUTABLE_LINKER__TransformTest_Debug CMakeFiles/TransformTest.dir/src/glad.c.obj CMakeFiles/TransformTest.dir/src/Transform/TransformTest.cpp.obj CMakeFiles/TransformTest.dir/src/Shader/Shader.cpp.obj | D$:/LearnOpenGL/lib/glfw3.dll
   FLAGS = -g
-  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_LIBRARIES = D:/LearnOpenGL/lib/glfw3.dll  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\TransformTest.dir
   POST_BUILD = cd .
   PRE_LINK = cd .

@@ -28,7 +28,11 @@ add_executable(Texture src/glad.c src/Texture/Texture.cpp
         include/Tool/Shader.h
         src/Shader/Shader.cpp)
 
-add_executable(TransformTest src/glad.c src/Transform/TransformTest.cpp)
+add_executable(TransformTest src/glad.c src/Transform/TransformTest.cpp
+        include/Tool/stb_image.h
+        include/Tool/Shader.h
+        src/Shader/Shader.cpp
+)
 #file (GLOB_RECURSE files *.cpp)
 #foreach (file ${files})
 #    string(REGEX REPLACE ".+/(.+)\\..*" "\\1" exe ${file})
@@ -49,3 +53,4 @@ target_link_libraries(ColorfulTriangle ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
 target_link_libraries(Shader ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
 target_link_libraries(useGLSL ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
 target_link_libraries(Texture ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
+target_link_libraries(TransformTest ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
