@@ -9,5 +9,6 @@ D:/LearnOpenGL/cmake-build-debug/CMakeFiles/Shader.dir
 D:/LearnOpenGL/cmake-build-debug/CMakeFiles/useGLSL.dir
 D:/LearnOpenGL/cmake-build-debug/CMakeFiles/Texture.dir
 D:/LearnOpenGL/cmake-build-debug/CMakeFiles/TransformTest.dir
+D:/LearnOpenGL/cmake-build-debug/CMakeFiles/Coordinate.dir
 D:/LearnOpenGL/cmake-build-debug/CMakeFiles/edit_cache.dir
 D:/LearnOpenGL/cmake-build-debug/CMakeFiles/rebuild_cache.dir

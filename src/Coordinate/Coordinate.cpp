@@ -4,6 +4,9 @@
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 #include "Tool/Shader.h"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include <iostream>
 
 //随着窗体大小更变
@@ -39,7 +42,7 @@ int main()
         return -1;
     }
     
-    Shader ourShader("../src/Texture/Assets/TextureVertex.vert" , "../src/Texture//Assets//TextureFragment.frag");
+    Shader ourShader("../src/Coordinate/CoordinateVert.vert" , "../src/Coordinate/CoordinateFrag.frag");
     
     //顶点坐标
     float vertices[] = {
@@ -105,7 +108,7 @@ int main()
     //反转y轴
     stbi_set_flip_vertically_on_load(true);
     unsigned char *data = stbi_load("../src/Texture/Assets/container.jpg" ,
-                            &width , &height , &nrChannel , 0);
+                                    &width , &height , &nrChannel , 0);
     
     if (data)
     {
@@ -122,10 +125,16 @@ int main()
     
     glGenTextures(1 , &texture2);
     glBindTexture(GL_TEXTURE_2D , texture2);
+    //绑定坐标轴
+    glTexParameteri(GL_TEXTURE_2D , GL_TEXTURE_WRAP_S , GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D , GL_TEXTURE_WRAP_T , GL_REPEAT);
+    //设置高低通滤波的过滤方式
+    glTexParameteri(GL_TEXTURE_2D , GL_TEXTURE_MIN_FILTER , GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER , GL_LINEAR);
     
     //长 宽 颜色 三个通道
     data = stbi_load("../src/Texture/Assets/awesomeface.png" ,
-                                    &width , &height , &nrChannel , 0);
+                     &width , &height , &nrChannel , 0);
     
     if (data)
     {
@@ -150,28 +159,37 @@ int main()
     while (!glfwWindowShouldClose(window))
     {
         //输入
-        // input
-        // -----
         processInput(window);
         
-        // render
-        // ------
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
         
-        // bind textures on corresponding texture units
+        //机会绑定渲染贴图
         glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, texture1);
+        glBindTexture(GL_TEXTURE_2D , texture1);
         glActiveTexture(GL_TEXTURE1);
-        glBindTexture(GL_TEXTURE_2D, texture2);
+        glBindTexture(GL_TEXTURE_2D , texture2);
         
-        // render container
-        ourShader.use();
+        //第一个图片
+        glm::mat4 trans = glm::mat4(1.0f);
+        trans = glm::rotate(trans, (float)glfwGetTime(), glm::vec3(0.0, 0.0, 1.0));
+        trans = glm::scale(trans, glm::vec3(0.5, 0.5, 0.5));
+        trans = glm::translate(trans , glm::vec3(0.5f , 0.0f , 0.0f));
+        
+        unsigned int transformLoc = glGetUniformLocation(ourShader.ID , "transform");
+        //1.Uniform的地址 2.发送的矩阵数量 3.是否进行矩阵转置 4.矩阵
+        glUniformMatrix4fv(transformLoc , 1 , GL_TRUE , glm::value_ptr(trans));
+        
         glBindVertexArray(VAO);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-        
-        // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
-        // -------------------------------------------------------------------------------
+        //glDrawArrays(GL_TRIANGLES , 0 , 3);
+        //1.绘制模式 2.绘制的点数量 3.索引类型 4.偏移值
+        glDrawElements(GL_TRIANGLES , 6 , GL_UNSIGNED_INT , 0);
+
+
+        //线框模式绘制
+        //1.康到三角形的正面和背面 2.用线绘制
+        //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        //渲染 交换缓冲
         glfwSwapBuffers(window);
         glfwPollEvents();
     }

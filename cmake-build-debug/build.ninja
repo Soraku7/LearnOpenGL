@@ -512,6 +512,54 @@ build TransformTest.exe: CXX_EXECUTABLE_LINKER__TransformTest_Debug CMakeFiles/T
   TARGET_IMPLIB = libTransformTest.dll.a
   TARGET_PDB = TransformTest.exe.dbg
 
+# =============================================================================
+# Object build statements for EXECUTABLE target Coordinate
+
+
+#############################################
+# Order-only phony target for Coordinate
+
+build cmake_object_order_depends_target_Coordinate: phony || CMakeFiles/Coordinate.dir
+
+build CMakeFiles/Coordinate.dir/src/glad.c.obj: C_COMPILER__Coordinate_unscanned_Debug D$:/LearnOpenGL/src/glad.c || cmake_object_order_depends_target_Coordinate
+  DEP_FILE = CMakeFiles\Coordinate.dir\src\glad.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -ID:/LearnOpenGL/include
+  OBJECT_DIR = CMakeFiles\Coordinate.dir
+  OBJECT_FILE_DIR = CMakeFiles\Coordinate.dir\src
+
+build CMakeFiles/Coordinate.dir/src/Coordinate/Coordinate.cpp.obj: CXX_COMPILER__Coordinate_unscanned_Debug D$:/LearnOpenGL/src/Coordinate/Coordinate.cpp || cmake_object_order_depends_target_Coordinate
+  DEP_FILE = CMakeFiles\Coordinate.dir\src\Coordinate\Coordinate.cpp.obj.d
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -ID:/LearnOpenGL/include
+  OBJECT_DIR = CMakeFiles\Coordinate.dir
+  OBJECT_FILE_DIR = CMakeFiles\Coordinate.dir\src\Coordinate
+
+build CMakeFiles/Coordinate.dir/src/Shader/Shader.cpp.obj: CXX_COMPILER__Coordinate_unscanned_Debug D$:/LearnOpenGL/src/Shader/Shader.cpp || cmake_object_order_depends_target_Coordinate
+  DEP_FILE = CMakeFiles\Coordinate.dir\src\Shader\Shader.cpp.obj.d
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -ID:/LearnOpenGL/include
+  OBJECT_DIR = CMakeFiles\Coordinate.dir
+  OBJECT_FILE_DIR = CMakeFiles\Coordinate.dir\src\Shader
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target Coordinate
+
+
+#############################################
+# Link the executable Coordinate.exe
+
+build Coordinate.exe: CXX_EXECUTABLE_LINKER__Coordinate_Debug CMakeFiles/Coordinate.dir/src/glad.c.obj CMakeFiles/Coordinate.dir/src/Coordinate/Coordinate.cpp.obj CMakeFiles/Coordinate.dir/src/Shader/Shader.cpp.obj | D$:/LearnOpenGL/lib/glfw3.dll
+  FLAGS = -g
+  LINK_LIBRARIES = D:/LearnOpenGL/lib/glfw3.dll  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\Coordinate.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = Coordinate.exe
+  TARGET_IMPLIB = libCoordinate.dll.a
+  TARGET_PDB = Coordinate.exe.dbg
+
 
 #############################################
 # Utility command for edit_cache
@@ -539,6 +587,8 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # Target aliases.
 
 build ColorfulTriangle: phony ColorfulTriangle.exe
+
+build Coordinate: phony Coordinate.exe
 
 build CreateWindow: phony CreateWindow.exe
 
@@ -568,7 +618,7 @@ build useGLSL: phony useGLSL.exe
 #############################################
 # Folder: D:/LearnOpenGL/cmake-build-debug
 
-build all: phony LearnOpenGL.exe CreateWindow.exe Rectangle.exe TwoTriangle.exe GLSL.exe Uniform.exe ColorfulTriangle.exe Shader.exe useGLSL.exe Texture.exe TransformTest.exe
+build all: phony LearnOpenGL.exe CreateWindow.exe Rectangle.exe TwoTriangle.exe GLSL.exe Uniform.exe ColorfulTriangle.exe Shader.exe useGLSL.exe Texture.exe TransformTest.exe Coordinate.exe
 
 # =============================================================================
 # Built-in targets

@@ -42,7 +42,7 @@ int main()
         return -1;
     }
     
-    Shader ourShader("D:\\LearnOpenGL\\src\\Transform\\TransformVertex.vert" , "D:\\LearnOpenGL\\src\\Transform\\TransformFragment.frag");
+    Shader ourShader("../src/Transform/TransformVertex.vert" , "../src/Transform/TransformFragment.frag");
     
     //顶点坐标
     float vertices[] = {
@@ -107,7 +107,7 @@ int main()
     int width , height , nrChannel;
     //反转y轴
     stbi_set_flip_vertically_on_load(true);
-    unsigned char *data = stbi_load("D:\\LearnOpenGL\\src\\Texture\\Assets\\container.jpg" ,
+    unsigned char *data = stbi_load("../src/Texture/Assets/container.jpg" ,
                                     &width , &height , &nrChannel , 0);
     
     if (data)
@@ -133,7 +133,7 @@ int main()
     glTexParameteri(GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER , GL_LINEAR);
     
     //长 宽 颜色 三个通道
-    data = stbi_load("D:\\LearnOpenGL\\src\\Texture\\Assets\\awesomeface.png" ,
+    data = stbi_load("../src/Texture/Assets/awesomeface.png" ,
                      &width , &height , &nrChannel , 0);
     
     if (data)
