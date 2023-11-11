@@ -39,6 +39,11 @@ add_executable(Coordinate src/glad.c src/Coordinate/Coordinate.cpp
         include/Tool/Shader.h
         src/Shader/Shader.cpp
 )
+add_executable(Cube src/glad.c src/Coordinate/CUbe.cpp
+        include/Tool/stb_image.h
+        include/Tool/Shader.h
+        src/Shader/Shader.cpp
+)
 #file (GLOB_RECURSE files *.cpp)
 #foreach (file ${files})
 #    string(REGEX REPLACE ".+/(.+)\\..*" "\\1" exe ${file})
@@ -61,4 +66,6 @@ target_link_libraries(useGLSL ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
 target_link_libraries(Texture ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
 target_link_libraries(TransformTest ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
 target_link_libraries(Coordinate ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
+target_link_libraries(Cube ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
+
 

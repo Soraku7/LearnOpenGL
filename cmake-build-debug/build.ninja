@@ -560,6 +560,54 @@ build Coordinate.exe: CXX_EXECUTABLE_LINKER__Coordinate_Debug CMakeFiles/Coordin
   TARGET_IMPLIB = libCoordinate.dll.a
   TARGET_PDB = Coordinate.exe.dbg
 
+# =============================================================================
+# Object build statements for EXECUTABLE target Cube
+
+
+#############################################
+# Order-only phony target for Cube
+
+build cmake_object_order_depends_target_Cube: phony || CMakeFiles/Cube.dir
+
+build CMakeFiles/Cube.dir/src/glad.c.obj: C_COMPILER__Cube_unscanned_Debug D$:/LearnOpenGL/src/glad.c || cmake_object_order_depends_target_Cube
+  DEP_FILE = CMakeFiles\Cube.dir\src\glad.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -ID:/LearnOpenGL/include
+  OBJECT_DIR = CMakeFiles\Cube.dir
+  OBJECT_FILE_DIR = CMakeFiles\Cube.dir\src
+
+build CMakeFiles/Cube.dir/src/Coordinate/Cube.cpp.obj: CXX_COMPILER__Cube_unscanned_Debug D$:/LearnOpenGL/src/Coordinate/Cube.cpp || cmake_object_order_depends_target_Cube
+  DEP_FILE = CMakeFiles\Cube.dir\src\Coordinate\Cube.cpp.obj.d
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -ID:/LearnOpenGL/include
+  OBJECT_DIR = CMakeFiles\Cube.dir
+  OBJECT_FILE_DIR = CMakeFiles\Cube.dir\src\Coordinate
+
+build CMakeFiles/Cube.dir/src/Shader/Shader.cpp.obj: CXX_COMPILER__Cube_unscanned_Debug D$:/LearnOpenGL/src/Shader/Shader.cpp || cmake_object_order_depends_target_Cube
+  DEP_FILE = CMakeFiles\Cube.dir\src\Shader\Shader.cpp.obj.d
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -ID:/LearnOpenGL/include
+  OBJECT_DIR = CMakeFiles\Cube.dir
+  OBJECT_FILE_DIR = CMakeFiles\Cube.dir\src\Shader
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target Cube
+
+
+#############################################
+# Link the executable Cube.exe
+
+build Cube.exe: CXX_EXECUTABLE_LINKER__Cube_Debug CMakeFiles/Cube.dir/src/glad.c.obj CMakeFiles/Cube.dir/src/Coordinate/Cube.cpp.obj CMakeFiles/Cube.dir/src/Shader/Shader.cpp.obj | D$:/LearnOpenGL/lib/glfw3.dll
+  FLAGS = -g
+  LINK_LIBRARIES = D:/LearnOpenGL/lib/glfw3.dll  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\Cube.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = Cube.exe
+  TARGET_IMPLIB = libCube.dll.a
+  TARGET_PDB = Cube.exe.dbg
+
 
 #############################################
 # Utility command for edit_cache
@@ -592,6 +640,8 @@ build Coordinate: phony Coordinate.exe
 
 build CreateWindow: phony CreateWindow.exe
 
+build Cube: phony Cube.exe
+
 build GLSL: phony GLSL.exe
 
 build LearnOpenGL: phony LearnOpenGL.exe
@@ -618,7 +668,7 @@ build useGLSL: phony useGLSL.exe
 #############################################
 # Folder: D:/LearnOpenGL/cmake-build-debug
 
-build all: phony LearnOpenGL.exe CreateWindow.exe Rectangle.exe TwoTriangle.exe GLSL.exe Uniform.exe ColorfulTriangle.exe Shader.exe useGLSL.exe Texture.exe TransformTest.exe Coordinate.exe
+build all: phony LearnOpenGL.exe CreateWindow.exe Rectangle.exe TwoTriangle.exe GLSL.exe Uniform.exe ColorfulTriangle.exe Shader.exe useGLSL.exe Texture.exe TransformTest.exe Coordinate.exe Cube.exe
 
 # =============================================================================
 # Built-in targets
