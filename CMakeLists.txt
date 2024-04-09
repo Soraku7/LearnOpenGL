@@ -3,46 +3,51 @@ project(LearnOpenGL)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(LearnOpenGL src/glad.c src/Triangle/Triangle.cpp)
+add_executable(LearnOpenGL src/glad.c src/Chap1_2Triangle/Triangle.cpp)
 
-add_executable(CreateWindow src/glad.c src/CreateWindow/CreateWindow.cpp)
+add_executable(CreateWindow src/glad.c src/Chap1_1CreateWindow/CreateWindow.cpp)
 
-add_executable(Rectangle src/glad.c src/Triangle/Rectangle.cpp)
+add_executable(Rectangle src/glad.c src/Chap1_2Triangle/Rectangle.cpp)
 
-add_executable(TwoTriangle src/glad.c src/Triangle/TwoTriangle.cpp)
+add_executable(TwoTriangle src/glad.c src/Chap1_2Triangle/TwoTriangle.cpp)
 
-add_executable(GLSL src/glad.c src/Shader/GLSL.cpp)
+add_executable(GLSL src/glad.c src/Chap1_3Shader/GLSL.cpp)
 
-add_executable(Uniform src/glad.c src/Shader/Uniform.cpp)
+add_executable(Uniform src/glad.c src/Chap1_3Shader/Uniform.cpp)
 
-add_executable(ColorfulTriangle src/glad.c src/Shader/ColorfulTriangle.cpp)
+add_executable(ColorfulTriangle src/glad.c src/Chap1_3Shader/ColorfulTriangle.cpp)
 
-add_executable(Shader src/glad.c src/Shader/Shader.cpp)
+add_executable(Shader src/glad.c src/Chap1_3Shader/Shader.cpp)
 
-add_executable(useGLSL src/glad.c src/Shader/useGLSL.cpp
-         src/glad.c src/Shader/Shader.cpp
+add_executable(useGLSL src/glad.c src/Chap1_3Shader/useGLSL.cpp
+         src/glad.c src/Chap1_3Shader/Shader.cpp
          src/glad.c include/Tool/Shader.h)
 
-add_executable(Texture src/glad.c src/Texture/Texture.cpp
+add_executable(Texture src/glad.c src/Chap1_4Texture/Texture.cpp
         include/Tool/stb_image.h
         include/Tool/Shader.h
-        src/Shader/Shader.cpp)
+        src/Chap1_3Shader/Shader.cpp)
 
-add_executable(TransformTest src/glad.c src/Transform/TransformTest.cpp
+add_executable(TransformTest src/glad.c src/Chap1_5Transform/TransformTest.cpp
         include/Tool/stb_image.h
         include/Tool/Shader.h
-        src/Shader/Shader.cpp
+        src/Chap1_3Shader/Shader.cpp
 )
 
-add_executable(Coordinate src/glad.c src/Coordinate/Coordinate.cpp
+add_executable(Coordinate src/glad.c src/Chap1_6Coordinate/Coordinate.cpp
         include/Tool/stb_image.h
         include/Tool/Shader.h
-        src/Shader/Shader.cpp
+        src/Chap1_3Shader/Shader.cpp
 )
-add_executable(Cube src/glad.c src/Coordinate/CUbe.cpp
+add_executable(Cube src/glad.c src/Chap1_6Coordinate/CUbe.cpp
         include/Tool/stb_image.h
         include/Tool/Shader.h
-        src/Shader/Shader.cpp
+        src/Chap1_3Shader/Shader.cpp
+)
+add_executable(LookAt src/glad.c src/Chap1_7Camera/LookAt.cpp
+        include/Tool/stb_image.h
+        include/Tool/Shader.h
+        src/Chap1_3Shader/Shader.cpp
 )
 #file (GLOB_RECURSE files *.cpp)
 #foreach (file ${files})
@@ -67,5 +72,6 @@ target_link_libraries(Texture ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
 target_link_libraries(TransformTest ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
 target_link_libraries(Coordinate ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
 target_link_libraries(Cube ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
+target_link_libraries(LookAt ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
 
 
