@@ -62,7 +62,7 @@ int main()
     //将顶点复制到缓冲内存
     glBufferData(GL_ARRAY_BUFFER , sizeof(vertices) , vertices , GL_STATIC_DRAW);
     
-    Shader ourShader("../src/Shader/GLSLSource/Vertex.vert" , "../src/Shader/GLSLSource/Fragment.frag");
+    Shader ourShader("../src/Chap1_3Shader/GLSLSource/Vertex.vert" , "../src/Chap1_3Shader/GLSLSource/Fragment.frag");
     
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);

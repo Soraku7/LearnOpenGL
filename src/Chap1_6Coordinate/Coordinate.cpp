@@ -4,6 +4,9 @@
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 #include "Tool/Shader.h"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include <iostream>
 
 //随着窗体大小更变
@@ -39,15 +42,15 @@ int main()
         return -1;
     }
     
-    Shader ourShader("../src/Texture/Assets/TextureVertex.vert" , "../src/Texture//Assets//TextureFragment.frag");
+    Shader ourShader("../src/Chap1_6Coordinate/CoordinateVert.vert" , "../src/Chap1_6Coordinate/CoordinateFrag.frag");
     
     //顶点坐标
     float vertices[] = {
-            // positions          // colors           // texture coords
-            0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f, // top right
-            0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f, // bottom right
-            -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f, // bottom left
-            -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f  // top left
+            // positions                  // texture coords
+            0.5f,  0.5f, 0.0f,   1.0f, 1.0f, // top right
+            0.5f, -0.5f, 0.0f,   1.0f, 0.0f, // bottom right
+            -0.5f, -0.5f, 0.0f,0.0f, 0.0f, // bottom left
+            -0.5f,  0.5f, 0.0f,0.0f, 1.0f  // top left
     };
     
     //使用EBO(Element Buffer Object)对绘制三角形设置顺序
@@ -82,12 +85,10 @@ int main()
     //2.顶点属性的大小 顶点是vec3 所以值是3  3.数据传入类型
     //4.数据是否被标准化 映射到0-1之间 5.步长 指连续顶点属性组之间的距离 这里是3个float
     //6.缓冲位置的起始偏移量 位置位于数组的开头 则偏移量为0
-    glVertexAttribPointer(0 , 3 , GL_FLOAT , GL_FALSE , 8 * sizeof(float) , (void*)0);
+    glVertexAttribPointer(0 , 3 , GL_FLOAT , GL_FALSE , 5 * sizeof(float) , (void*)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1 , 3 , GL_FLOAT , GL_FALSE , 8 * sizeof(float) , (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(1 , 2 , GL_FLOAT , GL_FALSE , 5 * sizeof(float) , (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(2 , 2 , GL_FLOAT , GL_FALSE , 8 * sizeof(float) , (void*)(6 * sizeof(float)));
-    glEnableVertexAttribArray(2);
     
     unsigned int texture1 , texture2;
     glGenTextures(1 , &texture1);
@@ -104,8 +105,8 @@ int main()
     int width , height , nrChannel;
     //反转y轴
     stbi_set_flip_vertically_on_load(true);
-    unsigned char *data = stbi_load("../src/Texture/Assets/container.jpg" ,
-                            &width , &height , &nrChannel , 0);
+    unsigned char *data = stbi_load("../src/Chap1_4Texture/Assets/container.jpg" ,
+                                    &width , &height , &nrChannel , 0);
     
     if (data)
     {
@@ -122,10 +123,16 @@ int main()
     
     glGenTextures(1 , &texture2);
     glBindTexture(GL_TEXTURE_2D , texture2);
+    //绑定坐标轴
+    glTexParameteri(GL_TEXTURE_2D , GL_TEXTURE_WRAP_S , GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D , GL_TEXTURE_WRAP_T , GL_REPEAT);
+    //设置高低通滤波的过滤方式
+    glTexParameteri(GL_TEXTURE_2D , GL_TEXTURE_MIN_FILTER , GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER , GL_LINEAR);
     
     //长 宽 颜色 三个通道
-    data = stbi_load("../src/Texture/Assets/awesomeface.png" ,
-                                    &width , &height , &nrChannel , 0);
+    data = stbi_load("../src/Chap1_4Texture/Assets/awesomeface.png" ,
+                     &width , &height , &nrChannel , 0);
     
     if (data)
     {
@@ -150,31 +157,50 @@ int main()
     while (!glfwWindowShouldClose(window))
     {
         //输入
-        // input
-        // -----
         processInput(window);
         
-        // render
-        // ------
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
         
-        // bind textures on corresponding texture units
+        //机会绑定渲染贴图
         glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, texture1);
+        glBindTexture(GL_TEXTURE_2D , texture1);
         glActiveTexture(GL_TEXTURE1);
-        glBindTexture(GL_TEXTURE_2D, texture2);
+        glBindTexture(GL_TEXTURE_2D , texture2);
         
-        // render container
-        ourShader.use();
+        glm:: mat4 model = glm:: mat4(1.0f);
+        glm:: mat4 view = glm:: mat4(1.0f);
+        glm:: mat4 projection = glm:: mat4(1.0f);
+        
+        model = glm::rotate(model , glm::radians(-55.0f) , glm::vec3(1.0f , 0.f , 0.f));
+        view = glm::translate(view , glm::vec3(0.f , 0.f , -3.0f));
+        projection = glm::perspective(glm::radians(45.0f) , (float)SCR_WIDTH / (float)SCR_HEIGHT , 0.1f , 100.f);
+        
+        unsigned int modelLoc = glGetUniformLocation(ourShader.ID , "model");
+        unsigned int viewLoc = glGetUniformLocation(ourShader.ID , "view");
+        unsigned int projectionLoc = glGetUniformLocation(ourShader.ID , "projection");
+        
+        glUniformMatrix4fv(modelLoc , 1 , GL_FALSE , glm::value_ptr(model));
+        glUniformMatrix4fv(viewLoc , 1 , GL_FALSE , glm::value_ptr(view));
+        glUniformMatrix4fv(projectionLoc , 1 , GL_FALSE , glm::value_ptr(projection));
+        
         glBindVertexArray(VAO);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        //glDrawArrays(GL_TRIANGLES , 0 , 3);
+        //1.绘制模式 2.绘制的点数量 3.索引类型 4.偏移值
+        glDrawElements(GL_TRIANGLES , 6 , GL_UNSIGNED_INT , 0);
         
-        // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
-        // -------------------------------------------------------------------------------
+
+        //线框模式绘制
+        //1.康到三角形的正面和背面 2.用线绘制
+        //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        //渲染 交换缓冲
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
+    
+    glDeleteVertexArrays(1 , &VAO);
+    glDeleteBuffers(1 , &VBO);
+    glDeleteBuffers(1 , &EBO);
     
     glfwTerminate();
     

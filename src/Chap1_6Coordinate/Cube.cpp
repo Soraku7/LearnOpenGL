@@ -42,31 +42,72 @@ int main()
         return -1;
     }
     
-    Shader ourShader("../src/Transform/TransformVertex.vert" , "../src/Transform/TransformFragment.frag");
+    Shader ourShader("../src/Chap1_6Coordinate/CoordinateVert.vert" , "../src/Chap1_6Coordinate/CoordinateFrag.frag");
     
     //顶点坐标
     float vertices[] = {
-            // positions          // colors           // texture coords
-            0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f, // top right
-            0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f, // bottom right
-            -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f, // bottom left
-            -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f  // top left
+            -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+            0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
+            0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+            0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+            -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+            -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+            
+            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+            0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+            0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+            0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+            -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
+            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+            
+            -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+            -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+            -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+            
+            0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+            0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+            0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+            0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+            0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+            0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+            
+            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+            0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
+            0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+            0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+            
+            -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+            0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+            0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+            0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+            -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
+            -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
     };
-    
-    //使用EBO(Element Buffer Object)对绘制三角形设置顺序
-    unsigned int indices[]={
-            0 , 1 , 3,
-            1 , 2 , 3
+    glm::vec3 cubePositions[] = {
+            glm::vec3( 0.0f,  0.0f,  0.0f),
+            glm::vec3( 2.0f,  5.0f, -15.0f),
+            glm::vec3(-1.5f, -2.2f, -2.5f),
+            glm::vec3(-3.8f, -2.0f, -12.3f),
+            glm::vec3( 2.4f, -0.4f, -3.5f),
+            glm::vec3(-1.7f,  3.0f, -7.5f),
+            glm::vec3( 1.3f, -2.0f, -2.5f),
+            glm::vec3( 1.5f,  2.0f, -2.5f),
+            glm::vec3( 1.5f,  0.2f, -1.5f),
+            glm::vec3(-1.3f,  1.0f, -1.5f)
     };
+
     
     //生成OpenGL对象
     unsigned int VBO;
     unsigned int VAO;
-    unsigned int EBO;
     
     glGenBuffers(1 , &VBO);
     glGenVertexArrays(1 , &VAO);
-    glGenBuffers(1 , &EBO);
     
     glBindVertexArray(VAO);
     
@@ -74,23 +115,18 @@ int main()
     //将创建的缓冲绑定到GL_ARRAY_BUFFER
     glBindBuffer(GL_ARRAY_BUFFER , VBO);
     //元素缓冲对象
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER , EBO);
     
     //将顶点复制到缓冲内存
     glBufferData(GL_ARRAY_BUFFER , sizeof(vertices) , vertices , GL_STATIC_DRAW);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER , sizeof(indices) , indices , GL_STATIC_DRAW);
-    
     //告诉GLSL如何解析顶点数据
     //1.将layout(location=0)的位置属性通知每个顶点
     //2.顶点属性的大小 顶点是vec3 所以值是3  3.数据传入类型
     //4.数据是否被标准化 映射到0-1之间 5.步长 指连续顶点属性组之间的距离 这里是3个float
     //6.缓冲位置的起始偏移量 位置位于数组的开头 则偏移量为0
-    glVertexAttribPointer(0 , 3 , GL_FLOAT , GL_FALSE , 8 * sizeof(float) , (void*)0);
+    glVertexAttribPointer(0 , 3 , GL_FLOAT , GL_FALSE , 5 * sizeof(float) , (void*)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1 , 3 , GL_FLOAT , GL_FALSE , 8 * sizeof(float) , (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(1 , 2 , GL_FLOAT , GL_FALSE , 5 * sizeof(float) , (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(2 , 2 , GL_FLOAT , GL_FALSE , 8 * sizeof(float) , (void*)(6 * sizeof(float)));
-    glEnableVertexAttribArray(2);
     
     unsigned int texture1 , texture2;
     glGenTextures(1 , &texture1);
@@ -107,7 +143,7 @@ int main()
     int width , height , nrChannel;
     //反转y轴
     stbi_set_flip_vertically_on_load(true);
-    unsigned char *data = stbi_load("../src/Texture/Assets/container.jpg" ,
+    unsigned char *data = stbi_load("../src/Chap1_4Texture/Assets/container.jpg" ,
                                     &width , &height , &nrChannel , 0);
     
     if (data)
@@ -133,7 +169,7 @@ int main()
     glTexParameteri(GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER , GL_LINEAR);
     
     //长 宽 颜色 三个通道
-    data = stbi_load("../src/Texture/Assets/awesomeface.png" ,
+    data = stbi_load("../src/Chap1_4Texture/Assets/awesomeface.png" ,
                      &width , &height , &nrChannel , 0);
     
     if (data)
@@ -155,6 +191,8 @@ int main()
     ourShader.setInt("texture1" , 0);
     ourShader.setInt("texture2" , 1);
     
+    //启用ZBuffer
+    glEnable(GL_DEPTH_TEST);
     //重复渲染
     while (!glfwWindowShouldClose(window))
     {
@@ -162,7 +200,7 @@ int main()
         processInput(window);
         
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
         //机会绑定渲染贴图
         glActiveTexture(GL_TEXTURE0);
@@ -170,28 +208,32 @@ int main()
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D , texture2);
         
-        //第一个图片
-        glm::mat4 trans = glm::mat4(1.0f);
-        trans = glm::rotate(trans, (float)glfwGetTime(), glm::vec3(0.0, 0.0, 1.0));
-        trans = glm::scale(trans, glm::vec3(0.5, 0.5, 0.5));
-        trans = glm::translate(trans , glm::vec3(0.5f , 0.0f , 0.0f));
+        glm:: mat4 view = glm:: mat4(1.0f);
+        glm:: mat4 projection = glm:: mat4(1.0f);
         
-        unsigned int transformLoc = glGetUniformLocation(ourShader.ID , "transform");
-        //1.Uniform的地址 2.发送的矩阵数量 3.是否进行矩阵转置 4.矩阵
-        glUniformMatrix4fv(transformLoc , 1 , GL_TRUE , glm::value_ptr(trans));
+        view = glm::translate(view , glm::vec3(0.f , 0.f , -3.0f));
+        projection = glm::perspective(glm::radians(45.0f) , (float)SCR_WIDTH / (float)SCR_HEIGHT , 0.1f , 100.f);
+        
+        unsigned int viewLoc = glGetUniformLocation(ourShader.ID , "view");
+        unsigned int projectionLoc = glGetUniformLocation(ourShader.ID , "projection");
+        
+        glUniformMatrix4fv(viewLoc , 1 , GL_FALSE , glm::value_ptr(view));
+        glUniformMatrix4fv(projectionLoc , 1 , GL_FALSE , glm::value_ptr(projection));
         
         glBindVertexArray(VAO);
-        //glDrawArrays(GL_TRIANGLES , 0 , 3);
+        for(unsigned int i = 0 ; i < 10 ; i ++){
+            glm:: mat4 model = glm:: mat4(1.0f);
+            model = glm::translate(model , cubePositions[i]);
+            float angle = 20 * i;
+            model = glm::rotate(model , glm::radians(angle) , glm::vec3(1.0f , 0.3f , 0.5f));
+            ourShader.setMat4("model" , model);
+            
+            glDrawArrays(GL_TRIANGLES , 0 , 36);
+        }
+        
         //1.绘制模式 2.绘制的点数量 3.索引类型 4.偏移值
-        glDrawElements(GL_TRIANGLES , 6 , GL_UNSIGNED_INT , 0);
-
-//        trans = glm::mat4(1.0f);
-//        trans = glm::translate(trans , glm::vec3(0 , 0 , 0));
-//        float scaleAmount = static_cast<float>(sin(glfwGetTime()));
-//        trans = glm::scale(trans , glm::vec3(scaleAmount , scaleAmount , scaleAmount));
-//        glUniformMatrix4fv(transformLoc , 1 , GL_FALSE , &trans[0][0]);
-//
-//        glDrawElements(GL_TRIANGLES , 6 , GL_UNSIGNED_INT , 0);
+        
+        
         //线框模式绘制
         //1.康到三角形的正面和背面 2.用线绘制
         //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -199,6 +241,9 @@ int main()
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
+    
+    glDeleteVertexArrays(1 , &VAO);
+    glDeleteBuffers(1 , &VBO);
     
     glfwTerminate();
     
