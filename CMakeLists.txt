@@ -17,8 +17,6 @@ add_executable(Uniform src/glad.c src/Chap1_3Shader/Uniform.cpp)
 
 add_executable(ColorfulTriangle src/glad.c src/Chap1_3Shader/ColorfulTriangle.cpp)
 
-add_executable(Shader src/glad.c src/Chap1_3Shader/Shader.cpp)
-
 add_executable(useGLSL src/glad.c src/Chap1_3Shader/useGLSL.cpp
          src/glad.c src/Chap1_3Shader/Shader.cpp
          src/glad.c include/Tool/Shader.h)
@@ -49,6 +47,11 @@ add_executable(LookAt src/glad.c src/Chap1_7Camera/LookAt.cpp
         include/Tool/Shader.h
         src/Chap1_3Shader/Shader.cpp
 )
+add_executable(FreeCamera src/glad.c src/Chap1_7Camera/FreeCamera.cpp
+        include/Tool/stb_image.h
+        include/Tool/Shader.h
+        src/Chap1_3Shader/Shader.cpp
+)
 #file (GLOB_RECURSE files *.cpp)
 #foreach (file ${files})
 #    string(REGEX REPLACE ".+/(.+)\\..*" "\\1" exe ${file})
@@ -66,12 +69,11 @@ target_link_libraries(TwoTriangle ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
 target_link_libraries(GLSL ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
 target_link_libraries(Uniform ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
 target_link_libraries(ColorfulTriangle ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
-target_link_libraries(Shader ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
 target_link_libraries(useGLSL ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
 target_link_libraries(Texture ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
 target_link_libraries(TransformTest ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
 target_link_libraries(Coordinate ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
 target_link_libraries(Cube ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
 target_link_libraries(LookAt ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
-
+target_link_libraries(FreeCamera ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
 
