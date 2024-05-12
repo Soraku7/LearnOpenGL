@@ -1,9 +1,9 @@
 #define STB_IMAGE_IMPLEMENTATION
-#include "Tool/stb_image.h"
 
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 #include "Tool/Shader.h"
+#include "Tool/Camera.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -23,6 +23,8 @@ const unsigned int SCR_HEIGHT = 600;
 float deltaTime = 0.0f;
 float lastFrame = 0.0f;
 
+Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
+
 //鼠标初始位置
 float lastX = 400, lastY = 300;
 
@@ -33,10 +35,6 @@ float fov = 45.0f;
 
 bool isFirstMouse = true;
 
-// camera
-glm::vec3 cameraPos   = glm::vec3(0.0f, 0.0f,  3.0f);
-glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
-glm::vec3 cameraUp    = glm::vec3(0.0f, 1.0f,  0.0f);
 int main()
 {
     glfwInit();
@@ -253,7 +251,7 @@ int main()
         glUniformMatrix4fv(projectionLoc , 1 , GL_FALSE , glm::value_ptr(projection));
         
         glm::mat4 view;
-        view = glm::lookAt(cameraPos , cameraPos + cameraFront , cameraUp);
+        view = camera.GetViewMatrix();
         
         ourShader.setMat4("view" , view);
         
@@ -294,19 +292,19 @@ void framebuffer_size_callback(GLFWwindow *window, int width, int height)
 
 void processInput(GLFWwindow *window)
 {
-    //按下ESC关闭窗口
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
     
-    float cameraSpeed = 2.5f * deltaTime;
-    if(glfwGetKey(window , GLFW_KEY_W) == GLFW_PRESS)
-        cameraPos += cameraSpeed * cameraFront;
-    if(glfwGetKey(window , GLFW_KEY_S) == GLFW_PRESS)
-        cameraPos -= cameraSpeed * cameraFront;
-    if(glfwGetKey(window , GLFW_KEY_A) == GLFW_PRESS)
-        cameraPos -= glm::normalize(glm::cross(cameraFront , cameraUp)) * cameraSpeed;
-    if(glfwGetKey(window , GLFW_KEY_D) == GLFW_PRESS)
-        cameraPos += glm::normalize(glm::cross(cameraFront , cameraUp)) * cameraSpeed;
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS){
+        camera.ProcessKeyboard(FORWARD, deltaTime);
+    }
+    
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+        camera.ProcessKeyboard(BACKWARD, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+        camera.ProcessKeyboard(LEFT, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+        camera.ProcessKeyboard(RIGHT, deltaTime);
 }
 
 void mouse_callback(GLFWwindow* window , double xpos , double ypos){
@@ -318,37 +316,14 @@ void mouse_callback(GLFWwindow* window , double xpos , double ypos){
     }
     
     float xoffset = xpos - lastX;
-    float yoffset = lastY - ypos;
+    float yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
+    
     lastX = xpos;
     lastY = ypos;
     
-    //鼠标灵敏度
-    float sensitivity = 0.01f;
-    xoffset *= sensitivity;
-    yoffset *= sensitivity;
-    
-    yaw += xoffset;
-    pitch += yoffset;
-    
-    if(pitch > 89.0f){
-        pitch = 89.0;
-    }
-    if(yaw < -89.0f){
-        yaw = -89.0;
-    }
-    
-    glm::vec3 front;
-    front.x = cos(glm::radians(pitch)) * cos(glm::radians(yaw));
-    front.y = sin(glm::radians(pitch));
-    front.z = sin(glm::radians(pitch)) * sin(glm::radians(yaw));
-    
-    cameraFront = glm::normalize(front);
+    camera.ProcessMouseMovement(xoffset, yoffset);
 }
 
 void scroll_callback(GLFWwindow* window , double xoffset , double yoffset){
-    if(fov >= 1.0f && fov <= 45.0f){
-        fov -= yoffset;
-    }
-    if(fov <= 1.0f) fov = 1.0f;
-    if(fov >= 45.0f) fov = 45.0f;
+    camera.ProcessMouseScroll(static_cast<float>(yoffset));
 }
