@@ -9,7 +9,10 @@ uniform vec3 objectColor;
 uniform vec3 lightColor;
 uniform float ambientStrength;
 uniform vec3 lightPos;
+uniform vec3 viewPos;
 
+
+float specularStrength = 0.5f;
 void main() {
 
     //漫反射光
@@ -20,7 +23,14 @@ void main() {
 
     //环境光
     vec3 ambient = lightColor * ambientStrength;
-    vec3 result = objectColor * (ambient + diffuse);
+    //镜面反射光
 
+
+    vec3 viewDir = normalize(viewPos - FragPos);
+    vec3 reflectDir = reflect(-lightDir , norm);
+    float spec = pow(max(dot(viewDir , reflectDir) , 0.0f) , 32);
+    vec3 specular = specularStrength * spec * lightColor;
+
+    vec3 result = objectColor * (ambient + diffuse + specular);
     FragColor = vec4(result , 1.0f);
 }
