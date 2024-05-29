@@ -72,6 +72,18 @@ add_executable(AmbientLight src/glad.c src/Chap2_2BasicLight/AmbientLight.cpp
         src/Chap2_1Light/LightingSource.vert
         src/Chap2_1Light/LightingSource.frag
 )
+add_executable(MaterialCube src/glad.c src/Chap2_3Material/Material.cpp
+        include/Tool/stb_image.h
+        include/Tool/Shader.h
+        include/Tool/Camera.h
+        src/Chap1_3Shader/Shader.cpp
+        src/Chap2_3Material/F_MaterialCube.frag
+        src/Chap2_3Material/V_MaterialCube.vert
+        src/Chap2_1Light/LightingSource.vert
+        src/Chap2_1Light/LightingSource.frag
+        src/Chap2_2BasicLight/Lighting.frag
+        src/Chap2_2BasicLight/Lighting.vert
+)
 #file (GLOB_RECURSE files *.cpp)
 #foreach (file ${files})
 #    string(REGEX REPLACE ".+/(.+)\\..*" "\\1" exe ${file})
@@ -98,3 +110,4 @@ target_link_libraries(LookAt ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
 target_link_libraries(FreeCamera ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
 target_link_libraries(Color ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
 target_link_libraries(AmbientLight ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)
+target_link_libraries(MaterialCube ${PROJECT_SOURCE_DIR}/lib/glfw3.dll)

@@ -24,8 +24,6 @@ void main() {
     //环境光
     vec3 ambient = lightColor * ambientStrength;
     //镜面反射光
-
-
     vec3 viewDir = normalize(viewPos - FragPos);
     vec3 reflectDir = reflect(-lightDir , norm);
     float spec = pow(max(dot(viewDir , reflectDir) , 0.0f) , 32);
