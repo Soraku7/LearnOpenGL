@@ -7,7 +7,6 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <Tool/Shader.h>
-#include <Tool/stb_image.h>
 #include <iostream>
 
 enum Camera_Movement {
